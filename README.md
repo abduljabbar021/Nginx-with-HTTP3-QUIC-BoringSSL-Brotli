@@ -195,7 +195,7 @@ If you want to include any external module then you might want to compile it wit
 https://www.nginx.com/blog/failed-nginx-plus-upgrade-module-version-x-instead-of-y/
 
 
-There is always someone to Thank alongside. Some of the Good Articles for compiling Nginx with Boring SSL
-
+There is always someone to Thank alongside. Mixed with my Experience, I added more missing details and clarified steps with in-depth instructions.
 https://codefaq.org/server/how-to-install-http-3-quic-on-nginx-server-for-ubuntu/#installing-boringssl
-https://quic.nginx.org/readme.html
+
+
