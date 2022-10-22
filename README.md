@@ -2,7 +2,10 @@
 Compile Nginx with BoringSSL to support HTTP3 &amp; QUIC along with Brotli for better Compression
 
 ## Installing Required Libraries, Dependencies and Tools
-We are choosing "/root" folder for all of our compilations and installations. 
+
+**Note:** HTTP3 - QUIC is not supported if you have problem with your SSL Certificate. You can create a Trusted Self-Signed Certificate following https://github.com/Airy3/trusted-self-signed-certificate
+
+Let's dive-in, we start by choosing "/root" folder for all of our compilations and installations. 
 Note: Be really careful, if you decide to change location.
       
     cd /root
@@ -189,6 +192,33 @@ From here we can now check if our new NGINX quic is now running.
     
 If some error is caused, it is always helpful to compile Nginx with BoringSSL only and test it. Then compile with Brotli, test it separately.
 
+Some Basic Server Configuration
+
+    server {
+        listen 443 http3 reuseport; //reuseport can be used only once among all Server Blocks
+        listen 443 ssl http2;
+
+        quic_retry on;
+        ssl_early_data on;
+
+        ssl_protocols TLSv1.3;
+    
+        add_header alt-svc 'h3=":443"; ma=3600';
+    
+        server_name example.com;
+
+        root /var/www/public_html;
+
+        ssl_certificate /var/www/certificates/certificate.crt;
+        ssl_certificate_key /var/www/certificates/certificate.key;
+
+        brotli on;
+        brotli_comp_level 6;
+        brotli_static on;
+        brotli_types application/octec-stream text/xml image/svg+xml application/x-font-ttf image/vnd.microsoft.icon application/x-font-opentype application/json font/eot application/vnd.ms-fontobject application/javascript font/otf application/xml application/xhtml+xml text/javascript application/x-javascript text/plain application/x-font-trutype application/xml+rss image/x-icon font/opentype text/css image/x-win-bitmap application/x-web-app-manifest+json;
+    }
+    
+**Note:** HTTP3 - QUIC is not supported if you have problem with your SSL Certificate. You can create a Trusted Self-Signed Certificate following https://github.com/Airy3/trusted-self-signed-certificate
 
 If you want to include any external module then you might want to compile it with latest version of Nginx. Follow
 
