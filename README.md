@@ -180,15 +180,15 @@ After that, we can now compile our NGINX.
     sudo dpkg-buildpackage -b
 
 Once it started compiling, it will asked if you want to include PSOL debug version, 
-just type yes. After it completes, it will create the deb file at the parent directory. 
+just type yes. After it completes, it will create the deb file at the parent directory e.g in our example, /root/nginx_XXXXX-2~jammy+nginx+boringssl_amd64.deb
 
 You can then use those to install nginx.
     
     sudo dpkg -i nginx_XXXXX-2~jammy+nginx+boringssl_amd64.deb
 
-From here we can now check if our new NGINX quic is now running.
+From here we can now check if our new NGINX quic is now running with configuration
     
-    nginx -t
+    nginx -V    //<--It will show config along with Modules installed.
     
 If some error is caused, it is always helpful to compile Nginx with BoringSSL only and test it. Then compile with Brotli, test it separately.
 
