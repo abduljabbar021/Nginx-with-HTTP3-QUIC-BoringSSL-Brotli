@@ -190,7 +190,8 @@ From here we can now check if our new NGINX quic is now running with configurati
     
     nginx -V    //<--It will show config along with Modules installed.
     
-If some error is caused, it is always helpful to compile Nginx with BoringSSL only and test it. Then compile with Brotli, test it separately.
+If some error is caused, check where your nginx configuration points for ngx_brotli while it gives error.
+It is always helpful to compile Nginx with BoringSSL only and test it. Then compile with Brotli, test it separately.
 
 Some Basic Server Configuration
 
