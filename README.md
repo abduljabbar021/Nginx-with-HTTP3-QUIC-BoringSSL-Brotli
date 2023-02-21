@@ -98,7 +98,7 @@ then execute these commands
     cd boringssl    
     mkdir build 
     cd /root/boringssl/build
-    cmake ..
+    cmake ..    //If you get error like "Could not find Go" then install Go with sudo apt-get install golang
     make
 
     cd /root/boringssl
